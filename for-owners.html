@@ -24,6 +24,26 @@
         </nav>
     </div>
 </header>
+<section class="container section">
+    <h2>Create an Account</h2>
+
+    <form onsubmit="handleSignup(event)">
+        <!-- User name -->
+        <label>Name</label>
+        <input id="signup-name" type="text" required />
+
+        <!-- User type -->
+        <label>Register as</label>
+        <select id="signup-type">
+            <option>Equipment Owner</option>
+            <option>Farmer</option>
+        </select>
+
+        <button class="btn btn-primary" type="submit">
+            Sign Up
+        </button>
+    </form>
+</section>
 
 <main>
     <section class="container section">
@@ -97,5 +117,7 @@
         <span>AgriShare • Strong roots, smart returns.</span>
     </div>
 </footer>
+<script src="script.js"></script>
 </body>
 </html>
+
