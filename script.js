@@ -1,106 +1,136 @@
 /* =========================================================
    AgriShare – Client-side functionality
-   This file enables:
+   Enables:
    1. Contact form submission
    2. Simple signup storage
-   3. Review submission and display
+   3. Review submission
+   4. Display all reviews (review page)
+   5. Display 3 most recent reviews (home page)
    ========================================================= */
+
 
 /* ---------- CONTACT FORM ---------- */
 function handleContactForm(event) {
-    event.preventDefault(); // Stop page reload
+    event.preventDefault(); // Prevent page reload
 
-    const name = document.getElementById("name").value;
-    const role = document.getElementById("role").value;
-    const message = document.getElementById("message").value;
+    const name = document.getElementById("name")?.value.trim();
+    const role = document.getElementById("role")?.value;
+    const message = document.getElementById("message")?.value.trim();
 
     if (!name || !message) {
         alert("Please fill all required fields.");
         return;
     }
 
-    // Send data to Formspree (external form backend)
     fetch("https://formspree.io/f/mwkgrjkp", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            name: name,
-            role: role,
-            message: message
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({ name, role, message })
+    })
+        .then(response => {
+            if (!response.ok) throw new Error("Submission failed");
+            alert("Message sent successfully!");
+            event.target.reset();
         })
-    })
-    .then(() => {
-        alert("Message sent successfully!");
-        event.target.reset();
-    })
-    .catch(() => {
-        alert("Error sending message. Try again later.");
-    });
+        .catch(() => {
+            alert("Error sending message. Please try again later.");
+        });
 }
+
 
 /* ---------- SIGN UP (FARMER / OWNER) ---------- */
 function handleSignup(event) {
     event.preventDefault();
 
-    const username = document.getElementById("signup-name").value;
-    const type = document.getElementById("signup-type").value;
+    const username = document.getElementById("signup-name")?.value.trim();
+    const type = document.getElementById("signup-type")?.value;
 
     if (!username) {
         alert("Enter a valid name.");
         return;
     }
 
-    // Store user locally (simulation of account creation)
-    localStorage.setItem("agrishareUser", JSON.stringify({
-        name: username,
-        type: type
-    }));
+    localStorage.setItem(
+        "agrishareUser",
+        JSON.stringify({ name: username, type })
+    );
 
     alert("Signup successful! Welcome to AgriShare.");
     event.target.reset();
 }
 
-/* ---------- REVIEWS SYSTEM ---------- */
+
+/* ---------- REVIEWS: ADD REVIEW ---------- */
 function submitReview(event) {
     event.preventDefault();
 
-    const reviewText = document.getElementById("review-text").value;
+    const reviewInput = document.getElementById("review-text");
+    if (!reviewInput) return;
+
+    const reviewText = reviewInput.value.trim();
 
     if (!reviewText) {
         alert("Review cannot be empty.");
         return;
     }
 
-    let reviews = JSON.parse(localStorage.getItem("agrishareReviews")) || [];
+    const reviews = JSON.parse(
+        localStorage.getItem("agrishareReviews")
+    ) || [];
+
     reviews.push(reviewText);
-
     localStorage.setItem("agrishareReviews", JSON.stringify(reviews));
-    document.getElementById("review-text").value = "";
 
+    reviewInput.value = "";
     loadReviews();
+    loadRecentReviews();
 }
 
-/* ---------- SHOW 3 MOST RECENT REVIEWS ON HOME PAGE ---------- */
-function loadRecentReviews() {
-    const list = document.getElementById("home-review-list");
-    if (!list) return; // Only run on home page
 
-    const reviews = JSON.parse(localStorage.getItem("agrishareReviews")) || [];
-
-    // Take last 3 reviews (most recent)
-    const recentReviews = reviews.slice(-3).reverse();
+/* ---------- REVIEWS: FULL LIST (REVIEW PAGE) ---------- */
+function loadReviews() {
+    const list = document.getElementById("review-list");
+    if (!list) return;
 
     list.innerHTML = "";
 
+    const reviews = JSON.parse(
+        localStorage.getItem("agrishareReviews")
+    ) || [];
+
+    reviews.forEach(review => {
+        const li = document.createElement("li");
+        li.textContent = review;
+        list.appendChild(li);
+    });
+}
+
+
+/* ---------- REVIEWS: LAST 3 (HOME PAGE) ---------- */
+function loadRecentReviews() {
+    const list = document.getElementById("home-review-list");
+    if (!list) return;
+
+    list.innerHTML = "";
+
+    const reviews = JSON.parse(
+        localStorage.getItem("agrishareReviews")
+    ) || [];
+
+    const recentReviews = reviews.slice(-3).reverse();
+
     if (recentReviews.length === 0) {
-        list.innerHTML = "<li>No reviews yet. Be the first to share your experience.</li>";
+        list.innerHTML =
+            "<li>No reviews yet. Be the first to share your experience.</li>";
         return;
     }
 
     recentReviews.forEach(review => {
         const li = document.createElement("li");
 
-        // Bullet styling (matches your theme)
         const bullet = document.createElement("span");
         bullet.className = "icon-bullet";
 
@@ -112,3 +142,10 @@ function loadRecentReviews() {
         list.appendChild(li);
     });
 }
+
+
+/* ---------- INITIAL LOAD ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+    loadReviews();
+    loadRecentReviews();
+});
