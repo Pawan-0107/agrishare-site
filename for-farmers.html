@@ -24,7 +24,16 @@
         </nav>
     </div>
 </header>
+<section class="container section">
+    <h2>User Reviews</h2>
 
+    <form onsubmit="submitReview(event)">
+        <textarea id="review-text" placeholder="Write your experience..." required></textarea>
+        <button class="btn btn-primary">Submit Review</button>
+    </form>
+
+    <ul id="review-list"></ul>
+</section>
 <main>
     <section class="container section">
         <div class="section-header">
@@ -97,5 +106,7 @@
         <span>AgriShare • Built with farmers in mind.</span>
     </div>
 </footer>
+<script src="script.js"></script>
 </body>
 </html>
+
