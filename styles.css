@@ -1,3 +1,39 @@
+/* =========================================================
+   Background imagery – subtle, earthy, non-intrusive
+   ========================================================= */
+
+.page-home {
+    background:
+        linear-gradient(
+            rgba(5, 5, 5, 0.85),
+            rgba(5, 5, 5, 0.95)
+        ),
+        url("images/home.jpg") center / cover no-repeat fixed;
+}
+
+.page-how {
+    background:
+        linear-gradient(
+            rgba(5, 5, 5, 0.82),
+            rgba(5, 5, 5, 0.96)
+        ),
+        url("images/how-it-works.jpg") center / cover no-repeat fixed;
+}
+
+.page-default {
+    background:
+        linear-gradient(
+            rgba(5, 5, 5, 0.88),
+            rgba(5, 5, 5, 0.97)
+        ),
+        url("images/default.jpg") center / cover no-repeat fixed;
+}
+
+/* Ensure content stays readable */
+body {
+    min-height: 100vh;
+}
+
 /* Root theme */
 :root {
     --bg: #050505;
@@ -449,3 +485,4 @@ footer {
         justify-content: flex-start;
     }
 }
+
