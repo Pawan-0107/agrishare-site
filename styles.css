@@ -9,8 +9,8 @@
 .page-home {
     background:
         linear-gradient(
-            rgba(5, 5, 5, 0.85),
-            rgba(5, 5, 5, 0.95)
+            rgba(5, 5, 5, 0.65),
+            rgba(5, 5, 5, 0.80)
         ),
         url("images/home.jpg") center / cover no-repeat fixed;
 }
@@ -18,8 +18,8 @@
 .page-how {
     background:
         linear-gradient(
-            rgba(5, 5, 5, 0.82),
-            rgba(5, 5, 5, 0.96)
+            rgba(5, 5, 5, 0.60),
+            rgba(5, 5, 5, 0.78)
         ),
         url("images/how-it-works.jpg") center / cover no-repeat fixed;
 }
@@ -27,8 +27,8 @@
 .page-default {
     background:
         linear-gradient(
-            rgba(5, 5, 5, 0.88),
-            rgba(5, 5, 5, 0.97)
+            rgba(5, 5, 5, 0.70),
+            rgba(5, 5, 5, 0.85)
         ),
         url("images/default.jpg") center / cover no-repeat fixed;
 }
@@ -489,5 +489,6 @@ footer {
         justify-content: flex-start;
     }
 }
+
 
 
