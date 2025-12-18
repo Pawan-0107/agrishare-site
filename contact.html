@@ -41,19 +41,36 @@
             </div>
 
             <div class="card form-card">
-                <h3>Contact form (prototype)</h3>
-                <p style="font-size:0.88rem; color:var(--muted); margin-bottom:0.8rem;">
-                    ---Backend Dev still in construction---
-                </p>
+                <h3>Contact Form</h3>
 
-                <form onsubmit="handleContactForm(event)">
-                    <!-- User name -->
+                <!-- FORM SPREE FORM (STYLED + WORKING) -->
+                <form
+                    action="https://formspree.io/f/mwkgrjkp"
+                    method="POST"
+                >
+                    <!-- Name -->
                     <label for="name">Name</label>
-                    <input id="name" type="text" required />
+                    <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        placeholder="Your name"
+                        required
+                    />
 
-                    <!-- Role selector -->
+                    <!-- Email -->
+                    <label for="email">Email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        name="_replyto"
+                        placeholder="Your email"
+                        required
+                    />
+
+                    <!-- Role -->
                     <label for="role">I am a</label>
-                    <select id="role">
+                    <select id="role" name="role">
                         <option>Farmer</option>
                         <option>Equipment Owner</option>
                         <option>FPO / Cooperative</option>
@@ -61,7 +78,19 @@
 
                     <!-- Message -->
                     <label for="message">Message</label>
-                    <textarea id="message" required></textarea>
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Write your message"
+                        required
+                    ></textarea>
+
+                    <!-- Redirect after submit -->
+                    <input
+                        type="hidden"
+                        name="_next"
+                        value="https://pawan-0107.github.io/agrishare-site/thank-you.html"
+                    />
 
                     <!-- Submit -->
                     <button class="btn btn-primary" type="submit">
@@ -80,57 +109,5 @@
             </span>
         </div>
     </footer>
-<script src="script.js"></script>
 </body>
 </html>
-
-
-
-<form
-  action="https://formspree.io/f/mwkgrjkp"
-  method="POST"
-  class="contact-form"
->
-    <!-- Name -->
-    <label for="name">Name</label>
-    <input
-      id="name"
-      type="text"
-      name="name"
-      placeholder="Your name"
-      required
-    />
-
-    <!-- Email (required for Formspree replies) -->
-    <label for="email">Email</label>
-    <input
-      id="email"
-      type="email"
-      name="_replyto"
-      placeholder="Your email"
-      required
-    />
-
-    <!-- Role -->
-    <label for="role">I am a</label>
-    <select id="role" name="role">
-        <option>Farmer</option>
-        <option>Equipment Owner</option>
-        <option>FPO / Cooperative</option>
-    </select>
-
-    <!-- Message -->
-    <label for="message">Message</label>
-    <textarea
-      id="message"
-      name="message"
-      placeholder="Write your message"
-      required
-    ></textarea>
-
-    <!-- Optional: redirect to thank-you page -->
-    <input type="hidden" name="_next" value="https://pawan-0107.github.io/agrishare-site/thank-you.html" />
-
-    <!-- Submit -->
-    <button class="btn btn-primary" type="submit">Send Message</button>
-</form>
