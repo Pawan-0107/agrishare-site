@@ -45,58 +45,28 @@
 
                 <!-- FORM SPREE FORM (STYLED + WORKING) -->
                 <form
-                    action="https://formspree.io/f/mwkgrjkp"
-                    method="POST"
-                >
-                    <!-- Name -->
-                    <label for="name">Name</label>
-                    <input
-                        id="name"
-                        type="text"
-                        name="name"
-                        placeholder="Your name"
-                        required
-                    />
+    action="https://formspree.io/f/mbdrrpka"
+    method="POST"
+>
+    <label>Name</label>
+    <input type="text" name="name" required />
 
-                    <!-- Email -->
-                    <label for="email">Email</label>
-                    <input
-                        id="email"
-                        type="email"
-                        name="_replyto"
-                        placeholder="Your email"
-                        required
-                    />
+    <label>Email</label>
+    <input type="email" name="_replyto" required />
 
-                    <!-- Role -->
-                    <label for="role">I am a</label>
-                    <select id="role" name="role">
-                        <option>Farmer</option>
-                        <option>Equipment Owner</option>
-                        <option>FPO / Cooperative</option>
-                    </select>
+    <label>Role</label>
+    <select name="role">
+        <option>Farmer</option>
+        <option>Equipment Owner</option>
+        <option>FPO / Cooperative</option>
+    </select>
 
-                    <!-- Message -->
-                    <label for="message">Message</label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        placeholder="Write your message"
-                        required
-                    ></textarea>
+    <label>Message</label>
+    <textarea name="message" required></textarea>
 
-                    <!-- Redirect after submit -->
-                    <input
-                        type="hidden"
-                        name="_next"
-                        value="https://pawan-0107.github.io/agrishare-site/thank-you.html"
-                    />
+    <button type="submit">Send Message</button>
+</form>
 
-                    <!-- Submit -->
-                    <button class="btn btn-primary" type="submit">
-                        Send Message
-                    </button>
-                </form>
             </div>
         </section>
     </main>
@@ -111,3 +81,4 @@
     </footer>
 </body>
 </html>
+
